@@ -1,4 +1,4 @@
-# 🌊 **Seagrass Database** 🌊
+# 🌊 **Seagrass Database** 
 
 Welcome to the **Seagrass DB** web application! This project demonstrates how to create a simple web application that fetches and displays sensor data from a MySQL database using **Node.js**, **Express**, and **MySQL**.
 
@@ -8,12 +8,8 @@ Welcome to the **Seagrass DB** web application! This project demonstrates how to
 
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Node.js, Express.js
-- **Database**: MySQL2
-- **API**: RESTful API (fetches data in JSON format)
-
----
-
-Here's the updated **Running the Application** section with the connection details and installation instructions included:
+- **Database**: MySQL
+- **API**: RESTful API
 
 ---
 
@@ -50,7 +46,7 @@ http://localhost:3000
 
 ## 📧 Contact
 
-📧 **Contact ME**: Feen0305  
+📧 **Contact ME :** Feen0305  
 
 ---
 
