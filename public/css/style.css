@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #2ecc71, #3498db); /* Green and Blue gradient */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: backgroundGradient 10s ease infinite;
+}
+
+@keyframes backgroundGradient {
+    0%, 100% {
+        background: linear-gradient(135deg, #2ecc71, #3498db); /* Green and Blue */
+    }
+    50% {
+        background: linear-gradient(135deg, #1abc9c, #2980b9); /* Darker shades for a dynamic effect */
+    }
+}
+
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    animation: fadeIn 2.5s ease;
+}
+
+.status {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #55efc4; /* Light green */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(85, 239, 196, 0.6), 0 0 20px rgba(85, 239, 196, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(85, 239, 196, 0.8), 0 0 30px rgba(85, 239, 196, 0.6);
+    }
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #2980b9, #1abc9c); /* Blue and Green gradient */
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+a:hover {
+    background: linear-gradient(135deg, #1abc9c, #2980b9); /* Reverse the gradient on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Styling for JSON data box */
+.sensor-data-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: white;
+    overflow-x: auto;
+    max-width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+pre {
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Styling for the Load Sensor Data button */
+#loadSensorData {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #2980b9, #2ecc71); /* Blue to Green gradient */
+    border-radius: 25px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+#loadSensorData:hover {
+    background: linear-gradient(135deg, #2ecc71, #2980b9); /* Reverse the gradient on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+#loadSensorData:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
