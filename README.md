@@ -10,6 +10,7 @@ Welcome to the **Seagrass DB** web application! This project demonstrates how to
 - **Backend**: Node.js, Express.js
 - **Database**: MySQL
 - **API**: RESTful API
+- **IoT device**: ESP32
 
 ---
 
