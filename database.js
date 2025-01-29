@@ -45,24 +45,45 @@ app.get('/sensor-data', (req, res) => {
 });
 
 app.post('/sensor-data', (req, res) => {
-    const { place, latitude, longitude, saltiness_PSU, wave_strength_m, light_intensity_lux } = req.body;
+    const { module_id, saltiness_PSU, wave_strength_m, light_intensity_lux } = req.body;
 
-    if (!place || !latitude || !longitude || !saltiness_PSU || !wave_strength_m || !light_intensity_lux) {
+    // Check if required fields are present
+    if (!module_id || !saltiness_PSU || !wave_strength_m || !light_intensity_lux) {
         return res.status(400).send('All fields except timestamp are required');
     }
 
-    const query = `INSERT INTO sensor_data (place, latitude, longitude, saltiness_PSU, wave_strength_m, light_intensity_lux) 
-                   VALUES (?, ?, ?, ?, ?, ?)`;
-    const values = [place, latitude, longitude, saltiness_PSU, wave_strength_m, light_intensity_lux];
+    // Query to check if the module_id exists in the places table
+    const checkModuleQuery = `SELECT module_id FROM places WHERE module_id = ?`;
+    const checkModuleValues = [module_id];
 
-    db.query(query, values, (err, result) => {
+    db.query(checkModuleQuery, checkModuleValues, (err, result) => {
         if (err) {
-            console.error('Error inserting data:', err);
-            return res.status(500).send('Error inserting data');
+            console.error('Error checking module_id:', err);
+            return res.status(500).send('Error checking module_id');
         }
-        res.status(201).json({ message: 'Data inserted successfully', id: result.insertId });
+
+        // If module_id not found, send error
+        if (result.length === 0) {
+            return res.status(404).send('Module not found');
+        }
+
+        // Insert the sensor data into the sensor_data table
+        const insertQuery = `INSERT INTO sensor_data (module_id, saltiness_PSU, wave_strength_M, light_intensity_LUX) 
+                             VALUES (?, ?, ?, ?)`;
+        const insertValues = [module_id, saltiness_PSU, wave_strength_m, light_intensity_lux];
+
+        db.query(insertQuery, insertValues, (err, result) => {
+            if (err) {
+                console.error('Error inserting sensor data:', err);
+                return res.status(500).send('Error inserting sensor data');
+            }
+
+            // Return success response with the inserted data ID
+            res.status(201).json({ message: 'Sensor data inserted successfully', id: result.insertId });
+        });
     });
 });
+
 
 // Start Server
 app.listen(port, () => {
