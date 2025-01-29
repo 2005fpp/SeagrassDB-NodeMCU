@@ -43,6 +43,27 @@ app.get('/sensor-data', (req, res) => {
         res.json(rows); // Sending the data back as JSON
     });
 });
+
+app.post('/sensor-data', (req, res) => {
+    const { place, latitude, longitude, saltiness_PSU, wave_strength_m, light_intensity_lux } = req.body;
+
+    if (!place || !latitude || !longitude || !saltiness_PSU || !wave_strength_m || !light_intensity_lux) {
+        return res.status(400).send('All fields except timestamp are required');
+    }
+
+    const query = `INSERT INTO sensor_data (place, latitude, longitude, saltiness_PSU, wave_strength_m, light_intensity_lux) 
+                   VALUES (?, ?, ?, ?, ?, ?)`;
+    const values = [place, latitude, longitude, saltiness_PSU, wave_strength_m, light_intensity_lux];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Error inserting data:', err);
+            return res.status(500).send('Error inserting data');
+        }
+        res.status(201).json({ message: 'Data inserted successfully', id: result.insertId });
+    });
+});
+
 // Start Server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
